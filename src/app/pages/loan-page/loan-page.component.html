@@ -1,0 +1,45 @@
+<div class="container mx-auto">
+  <!-- src/app/pages/loan-page/loan-page.component.html -->
+  <div>
+    <input
+      [(ngModel)]="searchTerm"
+      (ngModelChange)="onSearchChange($event)"
+      placeholder="Search by borrower"
+    />
+  </div>
+
+  <table>
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Borrower</th>
+        <th>Amount</th>
+        <th>Interest Rate</th>
+        <th>Term (months)</th>
+        <th>Start Date</th>
+        <th>Status</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let loan of filteredLoans$ | async">
+        <td>{{ loan.id }}</td>
+        <td>{{ loan.borrower }}</td>
+        <td>{{ loan.amount }}</td>
+        <td>{{ loan.interest_rate }}</td>
+        <td>{{ loan.term_months }}</td>
+        <td>{{ loan.start_date | date }}</td>
+        <td [ngClass]="getStatusClass(loan.status)">{{ loan.status }}</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div>
+    <button
+      (click)="changePage(currentPage - 1)"
+      [disabled]="currentPage === 1"
+    >
+      Previous
+    </button>
+    <button (click)="changePage(currentPage + 1)">Next</button>
+  </div>
+</div>

@@ -1,0 +1,70 @@
+
+<div class="login-container">
+  <div class="w-full md:w-6/12 lg:w-4/12">
+    <img src="/assets/Loan-Recovery-Platform.png" alt="Loan Recovery Platform" class="w-16 h-16 float-left">
+    <h2>{{ isRegistering() ? 'Register' : 'Login' }}</h2>
+
+    <form (ngSubmit)="onSubmit()" [formGroup]="authForm" novalidate>
+      <div *ngIf="isRegistering()" class="form-group">
+        <label for="email">Email</label>
+        <input
+          formControlName="email"
+          id="email"
+          name="email"
+          type="email"
+          required
+          class="form-control"
+          [ngClass]="{'is-invalid': false}"
+        />
+        <div *ngIf="this.authForm.get('email')?.invalid" class="error-message">
+          Email is required.
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="username">Username</label>
+        <input
+          id="username"
+          name="username"
+          type="text"
+          formControlName="username"
+          required
+          class="form-control"
+          [ngClass]="{'is-invalid':false}"
+        />
+        <div *ngIf="this.authForm.get('username')?.invalid" class="error-message">
+          Username is required.
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="password">Password</label>
+        <input
+          id="password"
+          name="password"
+          type="password"
+          formControlName="password"
+          required
+          class="form-control"
+          [ngClass]="{'is-invalid': false}"
+        />
+        <div *ngIf="this.authForm.get('password')?.invalid" class="error-message">
+          Password is required.
+        </div>
+      </div>
+
+      <button type="submit" [disabled]="authForm.invalid" class="submit-button">
+        Login
+      </button>
+
+      <div *ngIf="loginFailed" class="error-message">
+        Invalid username or password. Please try again.
+      </div>
+
+      <div>
+        <button type="button" (click)="toggleForm()" class="toggle-button">
+          {{ isRegistering() ? 'Already have an account? Login' : 'Don\'t have an account? Register' }}
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

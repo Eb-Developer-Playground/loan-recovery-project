@@ -1,0 +1,11 @@
+<div class="flex h-full flex-col justify-between">
+  <div class="flex gap-y-4 py-4 px-4 flex-col">
+    <a class="py-2  text-white no-underline rounded-lg block px-4 hover:bg-blue-800 transition-all" routerLinkActive="bg-blue-800" [routerLinkActiveOptions]="{exact: true}" routerLink="/dashboard">Dashboard</a>
+        <a routerLink="/loans" class="py-2 rounded-lg text-white no-underline block px-4 transition-all" routerLinkActive="bg-blue-800" [routerLinkActiveOptions]="{exact: true}">Loans</a>
+        <!-- <a routerLink="/users" class="py-2 rounded-lg text-white no-underline block px-4 transition-all" routerLinkActive="bg-blue-800" [routerLinkActiveOptions]="{exact: true}">Users</a>
+        <a routerLink="/reports" class="py-2 rounded-lg text-white no-underline block px-4 transition-all" routerLinkActive="bg-blue-800" [routerLinkActiveOptions]="{exact: true}">Reports</a> -->
+  
+  </div>
+  <app-logout></app-logout>
+
+</div>

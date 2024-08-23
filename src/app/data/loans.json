@@ -1,0 +1,452 @@
+[
+  {
+    "id": "1",
+    "borrower": "Alice Johnson",
+    "amount": 5000,
+    "interest_rate": 5.5,
+    "term_months": 24,
+    "start_date": "2024-01-15",
+    "status": "current"
+  },
+  {
+    "id": "2",
+    "borrower": "Bob Smith",
+    "amount": 15000,
+    "interest_rate": 4.2,
+    "term_months": 36,
+    "start_date": "2023-07-01",
+    "status": "completed"
+  },
+  {
+    "id": "3",
+    "borrower": "Charlie Brown",
+    "amount": 2000,
+    "interest_rate": 6.0,
+    "term_months": 12,
+    "start_date": "2024-03-20",
+    "status": "overdue"
+  },
+  {
+    "id": "4",
+    "borrower": "Diana Prince",
+    "amount": 8000,
+    "interest_rate": 5.0,
+    "term_months": 18,
+    "start_date": "2024-02-10",
+    "status": "pending"
+  },
+  {
+    "id": "5",
+    "borrower": "Ethan Hunt",
+    "amount": 25000,
+    "interest_rate": 4.8,
+    "term_months": 48,
+    "start_date": "2023-10-05",
+    "status": "current"
+  },
+  {
+    "id": "6",
+    "borrower": "Fiona Glenanne",
+    "amount": 6000,
+    "interest_rate": 5.9,
+    "term_months": 24,
+    "start_date": "2023-12-01",
+    "status": "completed"
+  },
+  {
+    "id": "7",
+    "borrower": "George Michael",
+    "amount": 12000,
+    "interest_rate": 4.5,
+    "term_months": 30,
+    "start_date": "2023-09-15",
+    "status": "overdue"
+  },
+  {
+    "id": "8",
+    "borrower": "Hannah Brown",
+    "amount": 7000,
+    "interest_rate": 5.0,
+    "term_months": 18,
+    "start_date": "2024-01-01",
+    "status": "pending"
+  },
+  {
+    "id": "9",
+    "borrower": "Ian Wright",
+    "amount": 9000,
+    "interest_rate": 4.3,
+    "term_months": 12,
+    "start_date": "2024-05-15",
+    "status": "current"
+  },
+  {
+    "id": "10",
+    "borrower": "Jessica Jones",
+    "amount": 11000,
+    "interest_rate": 6.2,
+    "term_months": 36,
+    "start_date": "2023-08-01",
+    "status": "completed"
+  },
+  {
+    "id": "11",
+    "borrower": "Kevin Spacey",
+    "amount": 15000,
+    "interest_rate": 4.1,
+    "term_months": 24,
+    "start_date": "2024-02-01",
+    "status": "overdue"
+  },
+  {
+    "id": "12",
+    "borrower": "Laura Linney",
+    "amount": 5000,
+    "interest_rate": 5.3,
+    "term_months": 18,
+    "start_date": "2024-03-01",
+    "status": "pending"
+  },
+  {
+    "id": "13",
+    "borrower": "Matt Damon",
+    "amount": 8000,
+    "interest_rate": 4.7,
+    "term_months": 30,
+    "start_date": "2023-11-01",
+    "status": "current"
+  },
+  {
+    "id": "14",
+    "borrower": "Natalie Portman",
+    "amount": 9500,
+    "interest_rate": 5.6,
+    "term_months": 24,
+    "start_date": "2024-06-01",
+    "status": "completed"
+  },
+  {
+    "id": "15",
+    "borrower": "Oscar Isaac",
+    "amount": 7000,
+    "interest_rate": 6.1,
+    "term_months": 36,
+    "start_date": "2023-10-15",
+    "status": "overdue"
+  },
+  {
+    "id": "16",
+    "borrower": "Penelope Cruz",
+    "amount": 4000,
+    "interest_rate": 5.0,
+    "term_months": 12,
+    "start_date": "2024-07-01",
+    "status": "pending"
+  },
+  {
+    "id": "17",
+    "borrower": "Quentin Tarantino",
+    "amount": 6000,
+    "interest_rate": 4.9,
+    "term_months": 24,
+    "start_date": "2023-09-01",
+    "status": "current"
+  },
+  {
+    "id": "18",
+    "borrower": "Rachel McAdams",
+    "amount": 13000,
+    "interest_rate": 5.2,
+    "term_months": 30,
+    "start_date": "2023-11-01",
+    "status": "completed"
+  },
+  {
+    "id": "19",
+    "borrower": "Samuel L. Jackson",
+    "amount": 5000,
+    "interest_rate": 5.5,
+    "term_months": 18,
+    "start_date": "2024-01-01",
+    "status": "overdue"
+  },
+  {
+    "id": "20",
+    "borrower": "Tina Fey",
+    "amount": 7500,
+    "interest_rate": 4.6,
+    "term_months": 24,
+    "start_date": "2024-04-01",
+    "status": "pending"
+  },
+  {
+    "id": "21",
+    "borrower": "Uma Thurman",
+    "amount": 8500,
+    "interest_rate": 5.4,
+    "term_months": 36,
+    "start_date": "2023-12-15",
+    "status": "current"
+  },
+  {
+    "id": "22",
+    "borrower": "Vince Vaughn",
+    "amount": 9000,
+    "interest_rate": 4.8,
+    "term_months": 12,
+    "start_date": "2024-05-01",
+    "status": "completed"
+  },
+  {
+    "id": "23",
+    "borrower": "Will Smith",
+    "amount": 11000,
+    "interest_rate": 6.0,
+    "term_months": 18,
+    "start_date": "2023-08-15",
+    "status": "overdue"
+  },
+  {
+    "id": "24",
+    "borrower": "Xena Warrior",
+    "amount": 6500,
+    "interest_rate": 5.3,
+    "term_months": 24,
+    "start_date": "2024-02-01",
+    "status": "pending"
+  },
+  {
+    "id": "25",
+    "borrower": "Yara Shahidi",
+    "amount": 7500,
+    "interest_rate": 5.0,
+    "term_months": 30,
+    "start_date": "2023-09-01",
+    "status": "current"
+  },
+  {
+    "id": "26",
+    "borrower": "Zach Galifianakis",
+    "amount": 5000,
+    "interest_rate": 4.9,
+    "term_months": 12,
+    "start_date": "2024-03-01",
+    "status": "completed"
+  },
+  {
+    "id": "27",
+    "borrower": "Amy Adams",
+    "amount": 9000,
+    "interest_rate": 6.1,
+    "term_months": 18,
+    "start_date": "2023-10-15",
+    "status": "overdue"
+  },
+  {
+    "id": "28",
+    "borrower": "Ben Affleck",
+    "amount": 12000,
+    "interest_rate": 5.2,
+    "term_months": 24,
+    "start_date": "2024-01-01",
+    "status": "pending"
+  },
+  {
+    "id": "29",
+    "borrower": "Chris Hemsworth",
+    "amount": 7000,
+    "interest_rate": 4.8,
+    "term_months": 36,
+    "start_date": "2023-12-01",
+    "status": "current"
+  },
+  {
+    "id": "30",
+    "borrower": "Dwayne Johnson",
+    "amount": 15000,
+    "interest_rate": 6.0,
+    "term_months": 24,
+    "start_date": "2024-05-01",
+    "status": "completed"
+  },
+  {
+    "id": "31",
+    "borrower": "Eva Mendes",
+    "amount": 6000,
+    "interest_rate": 5.1,
+    "term_months": 18,
+    "start_date": "2023-11-01",
+    "status": "overdue"
+  },
+  {
+    "id": "32",
+    "borrower": "Frank Grillo",
+    "amount": 8000,
+    "interest_rate": 4.7,
+    "term_months": 30,
+    "start_date": "2024-02-01",
+    "status": "pending"
+  },
+  {
+    "id": "33",
+    "borrower": "Gina Rodriguez",
+    "amount": 5000,
+    "interest_rate": 5.4,
+    "term_months": 12,
+    "start_date": "2024-07-01",
+    "status": "current"
+  },
+  {
+    "id": "34",
+    "borrower": "Hugh Jackman",
+    "amount": 10000,
+    "interest_rate": 5.6,
+    "term_months": 36,
+    "start_date": "2023-08-01",
+    "status": "completed"
+  },
+  {
+    "id": "35",
+    "borrower": "Isla Fisher",
+    "amount": 8500,
+    "interest_rate": 6.2,
+    "term_months": 24,
+    "start_date": "2024-03-01",
+    "status": "overdue"
+  },
+  {
+    "id": "36",
+    "borrower": "Jake Gyllenhaal",
+    "amount": 9500,
+    "interest_rate": 4.5,
+    "term_months": 18,
+    "start_date": "2023-12-01",
+    "status": "pending"
+  },
+  {
+    "id": "37",
+    "borrower": "Kate Winslet",
+    "amount": 7000,
+    "interest_rate": 5.3,
+    "term_months": 30,
+    "start_date": "2024-01-01",
+    "status": "current"
+  },
+  {
+    "id": "38",
+    "borrower": "Leonardo DiCaprio",
+    "amount": 11000,
+    "interest_rate": 6.0,
+    "term_months": 24,
+    "start_date": "2023-10-01",
+    "status": "completed"
+  },
+  {
+    "id": "39",
+    "borrower": "Mila Kunis",
+    "amount": 8000,
+    "interest_rate": 5.2,
+    "term_months": 36,
+    "start_date": "2024-04-01",
+    "status": "overdue"
+  },
+  {
+    "id": "40",
+    "borrower": "Nina Dobrev",
+    "amount": 6500,
+    "interest_rate": 4.8,
+    "term_months": 18,
+    "start_date": "2023-09-01",
+    "status": "pending"
+  },
+  {
+    "id": "41",
+    "borrower": "Oscar Isaac",
+    "amount": 9000,
+    "interest_rate": 5.6,
+    "term_months": 24,
+    "start_date": "2024-05-01",
+    "status": "current"
+  },
+  {
+    "id": "42",
+    "borrower": "Parker Posey",
+    "amount": 10000,
+    "interest_rate": 4.7,
+    "term_months": 30,
+    "start_date": "2023-10-15",
+    "status": "completed"
+  },
+  {
+    "id": "43",
+    "borrower": "Quincy Jones",
+    "amount": 7500,
+    "interest_rate": 5.3,
+    "term_months": 18,
+    "start_date": "2024-02-01",
+    "status": "overdue"
+  },
+  {
+    "id": "44",
+    "borrower": "Rachel Weisz",
+    "amount": 8500,
+    "interest_rate": 4.9,
+    "term_months": 12,
+    "start_date": "2023-11-01",
+    "status": "pending"
+  },
+  {
+    "id": "45",
+    "borrower": "Ryan Gosling",
+    "amount": 7000,
+    "interest_rate": 5.5,
+    "term_months": 24,
+    "start_date": "2024-01-01",
+    "status": "current"
+  },
+  {
+    "id": "46",
+    "borrower": "Sandra Bullock",
+    "amount": 9000,
+    "interest_rate": 6.0,
+    "term_months": 36,
+    "start_date": "2023-12-15",
+    "status": "completed"
+  },
+  {
+    "id": "47",
+    "borrower": "Tom Hiddleston",
+    "amount": 12000,
+    "interest_rate": 5.1,
+    "term_months": 18,
+    "start_date": "2024-03-01",
+    "status": "overdue"
+  },
+  {
+    "id": "48",
+    "borrower": "Uma Thurman",
+    "amount": 5000,
+    "interest_rate": 4.6,
+    "term_months": 24,
+    "start_date": "2023-09-01",
+    "status": "pending"
+  },
+  {
+    "id": "49",
+    "borrower": "Vin Diesel",
+    "amount": 11000,
+    "interest_rate": 5.2,
+    "term_months": 12,
+    "start_date": "2024-06-01",
+    "status": "current"
+  },
+  {
+    "id": "50",
+    "borrower": "Will Ferrell",
+    "amount": 8500,
+    "interest_rate": 5.4,
+    "term_months": 24,
+    "start_date": "2023-11-01",
+    "status": "completed"
+  }
+]
