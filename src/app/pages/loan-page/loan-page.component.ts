@@ -1,33 +1,39 @@
 // src/app/pages/loan-page/loan-page.component.ts
 import { Component, OnInit } from '@angular/core';
-import { LoansService } from '../../services/loans.service';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
+import { LoansService } from '../../services/loans.service';
+import { Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { NgIf, NgFor } from '@angular/common';
+import { MatIconModule } from '@angular/material/icon';
+import { download, generateCsv} from 'export-to-csv'
+import { MatButton } from '@angular/material/button';
+import { MatInput } from '@angular/material/input';
 
 @Component({
   selector: 'app-loan-page',
   templateUrl: './loan-page.component.html',
   styleUrls: ['./loan-page.component.sass'],
   standalone: true,
-  imports: [CommonModule, FormsModule, NgIf, NgFor]
+  imports: [CommonModule, FormsModule, MatIconModule, MatButton, MatInput]
 })
 export class LoanPageComponent implements OnInit {
   loans$!: Observable<any[]>;
-  filteredLoans$!: Observable<any[]>;
+  filteredLoans$!: any[];
   searchTerm: string = '';
   currentPage: number = 1;
   pageSize: number = 10;
 
-  constructor(private loansService: LoansService) {}
+  constructor(private loansService: LoansService, private router: Router) {}
 
   ngOnInit(): void {
     this.loans$ = this.loansService.fetchLoans();
-    this.filteredLoans$ = this.loans$.pipe(
+    this.loans$.pipe(
       map(loans => this.filterAndPaginate(loans))
-    );
+    ).subscribe((loans) => {
+      this.filteredLoans$ = loans
+    });
   }
 
   filterAndPaginate(loans: any[]): any[] {
@@ -40,16 +46,20 @@ export class LoanPageComponent implements OnInit {
 
   onSearchChange(term: string): void {
     this.searchTerm = term;
-    this.filteredLoans$ = this.loans$.pipe(
+    this.loans$.pipe(
       map(loans => this.filterAndPaginate(loans))
-    );
+    ).subscribe((loans) => {
+      this.filteredLoans$ = loans
+    });
   }
 
   changePage(page: number): void {
     this.currentPage = page;
-    this.filteredLoans$ = this.loans$.pipe(
+    this.loans$.pipe(
       map(loans => this.filterAndPaginate(loans))
-    );
+    ).subscribe((loans) => {
+      this.filteredLoans$ = loans
+    });
   }
 
   getStatusClass(status: string): string {
@@ -65,5 +75,18 @@ export class LoanPageComponent implements OnInit {
       default:
         return '';
     }
+  }
+
+  navigateToCreateLoan(): void {
+    this.router.navigate(['/loans/new']);
+  }
+
+  handleGenerateReport() {
+    const config = {
+      useKeysAsHeaders: true
+    }
+    const csv = generateCsv(config)(this.filteredLoans$);
+
+    return download(config)(csv)
   }
 }

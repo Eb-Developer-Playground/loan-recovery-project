@@ -1,12 +1,22 @@
+<!-- src/app/pages/loan-page/loan-page.component.html -->
 <div class="container mx-auto">
-  <!-- src/app/pages/loan-page/loan-page.component.html -->
-  <div>
+  <div class="flex justify-between items-center">
     <input
+    matInput
+    class="flex-1 max-w-sm"
       [(ngModel)]="searchTerm"
       (ngModelChange)="onSearchChange($event)"
       placeholder="Search by borrower"
     />
+
+    <div class="flex space-x-2 items-center">
+      <button mat-flat-button (click)="navigateToCreateLoan()">
+        <mat-icon>add</mat-icon> Create New Loan
+      </button>
+      <button mat-button (click)="handleGenerateReport()">Export to CSV</button>
+    </div>
   </div>
+
 
   <table>
     <thead>
@@ -18,10 +28,11 @@
         <th>Term (months)</th>
         <th>Start Date</th>
         <th>Status</th>
+        <th></th>
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let loan of filteredLoans$ | async">
+      <tr *ngFor="let loan of filteredLoans$">
         <td>{{ loan.id }}</td>
         <td>{{ loan.borrower }}</td>
         <td>{{ loan.amount }}</td>
@@ -29,6 +40,9 @@
         <td>{{ loan.term_months }}</td>
         <td>{{ loan.start_date | date }}</td>
         <td [ngClass]="getStatusClass(loan.status)">{{ loan.status }}</td>
+        <td>
+
+        </td>
       </tr>
     </tbody>
   </table>

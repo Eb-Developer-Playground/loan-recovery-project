@@ -1,0 +1,105 @@
+<div class="container mx-auto">
+    <h1>Create New Loan</h1>
+    <form class="flex flex-col space-y-4" [formGroup]="loanForm" (ngSubmit)="onSubmit()">
+      <div class="flex space-x-8">
+        <mat-form-field class="flex-1 w-full" appearance="fill">
+          <mat-label>First Name</mat-label>
+          <input matInput formControlName="firstName" placeholder="Enter your first name" />
+          <mat-error *ngIf="loanForm.get('firstName')?.hasError('required')">
+            First Name is required
+          </mat-error>
+        </mat-form-field>
+    
+        <mat-form-field class="flex-1 w-full" appearance="fill">
+          <mat-label>Last Name</mat-label>
+          <input matInput formControlName="lastName" placeholder="Enter your last name" />
+          <mat-error *ngIf="loanForm.get('lastName')?.hasError('required')">
+            Last Name is required
+          </mat-error>
+        </mat-form-field>
+      </div>
+      
+      <div class="flex space-x-8">
+        <mat-form-field class="flex-1 w-full" appearance="fill">
+          <mat-label>Account Number</mat-label>
+          <input matInput formControlName="accountNumber" placeholder="Enter your account number" /> 
+          <mat-error *ngIf="loanForm.get('accountNumber')?.hasError('required')">
+            Account Number is required
+          </mat-error>
+        </mat-form-field>
+    
+        <mat-form-field class="flex-1 w-full" appearance="fill">
+          <mat-label>Phone Number</mat-label>
+          <input matInput formControlName="phoneNumber" placeholder="Enter your phone number" />
+          <mat-error *ngIf="loanForm.get('phoneNumber')?.hasError('required')">
+            Phone Number is required
+          </mat-error>
+        </mat-form-field>
+      </div>
+     
+      <div class="flex space-x-8">
+        <mat-form-field class="flex-1 w-full" appearance="fill">
+          <mat-label>Address</mat-label>
+          <input matInput formControlName="address" placeholder="Enter your address" />
+          <mat-error *ngIf="loanForm.get('address')?.hasError('required')">
+            Address is required
+          </mat-error>
+        </mat-form-field>
+    
+        <mat-form-field class="flex-1 w-full" appearance="fill">
+          <mat-label>Income</mat-label>
+          <input matInput type="number" formControlName="income" placeholder="Enter your income" />
+        </mat-form-field>
+      </div>
+  
+      
+  
+      <div class="flex space-x-8">
+        <mat-form-field class="flex-1 w-full" appearance="fill">
+          <mat-label>Start Date</mat-label>
+          <input matInput [matDatepicker]="startDatePicker" formControlName="startDate" placeholder="Select start date" />
+          <mat-datepicker-toggle matSuffix [for]="startDatePicker"></mat-datepicker-toggle>
+          <mat-datepicker #startDatePicker></mat-datepicker>
+        </mat-form-field>
+    
+        <mat-form-field class="flex-1 w-full" appearance="fill">
+          <mat-label>Maturity Date</mat-label>
+          <input matInput [matDatepicker]="maturityDatePicker" formControlName="maturityDate" placeholder="Select maturity date" />
+          <mat-datepicker-toggle matSuffix [for]="maturityDatePicker"></mat-datepicker-toggle>
+          <mat-datepicker #maturityDatePicker></mat-datepicker>
+        </mat-form-field>
+      </div>
+  
+      <div formArrayName="guarantors">
+        <div class="flex space-x-8 items-start" *ngFor="let guarantor of guarantors.controls; let i = index" [formGroupName]="i">
+          <mat-form-field class="flex-1 w-full" appearance="fill">
+            <mat-label>Guarantor Name</mat-label>
+            <input matInput formControlName="name" placeholder="Enter guarantor's name" />
+            <mat-error *ngIf="guarantor.get('name')?.hasError('required')">
+              Guarantor Name is required
+            </mat-error>
+          </mat-form-field>
+  
+          <mat-form-field class="flex-1 w-full" appearance="fill">
+            <mat-label>Guarantor ID No</mat-label>
+            <input matInput formControlName="idNo" placeholder="Enter guarantor's ID No" />
+            <mat-error *ngIf="guarantor.get('idNo')?.hasError('required')">
+              Guarantor ID No is required
+            </mat-error>
+          </mat-form-field>
+  
+          <button mat-button type="button" class="mt-2" (click)="removeGuarantor(i)">Remove Guarantor</button>
+        </div>
+      </div>
+
+      <div class="flex flex-col items-center justify-center">
+              <button mat-stroked-button  type="button" (click)="addGuarantor()">Add Guarantor</button>
+
+      </div>
+      <mat-checkbox formControlName="consent">Consent</mat-checkbox>
+      <div>
+        <button class="float-right" mat-flat-button color="primary" type="submit">Submit</button>
+      </div>
+    </form>
+  </div>
+  

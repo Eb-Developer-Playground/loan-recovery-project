@@ -1,10 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { NgxChartsModule } from '@swimlane/ngx-charts';
 import loans from '../../data/loans.json'
+import { MatIcon } from '@angular/material/icon';
 @Component({
   selector: 'app-dashboard',
   standalone: true,
-  imports: [NgxChartsModule],
+  imports: [NgxChartsModule, MatIcon],
   templateUrl: './dashboard.component.html',
   styleUrls: ['./dashboard.component.sass']
 })

@@ -2,6 +2,7 @@ import { Component, effect, signal } from '@angular/core';
 import { Router } from '@angular/router';
 import { FormControl, FormGroup, FormsModule, ReactiveFormsModule, UntypedFormGroup, Validators } from '@angular/forms'; 
 import { CommonModule } from '@angular/common'; 
+import  passwordValidator from '../../validators/password.validator';
 
 type RegisterUserData = {
   email: string;
@@ -22,7 +23,7 @@ export class LoginComponent {
   // Login form variables
   authForm: UntypedFormGroup = new FormGroup({
     username: new FormControl("", [Validators.required]),
-    password: new FormControl("", [Validators.required]),
+    password: new FormControl("", [Validators.required, passwordValidator]),
     email: new FormControl("", [Validators.required, Validators.email])
   })
 
@@ -42,6 +43,12 @@ export class LoginComponent {
           this.authForm.addControl("email", new FormControl("", [Validators.required, Validators.email]))
       }
     })
+
+    this.authForm.valueChanges.subscribe({
+      next: () => {
+        console.log(this.authForm.get('password'), 'password_control')
+      }
+    })
   }
 
   // Toggle between login and registration forms
@@ -53,17 +60,22 @@ export class LoginComponent {
 
   onSubmit() {
     const {username, email, password} = this.authForm.value
-    if(this.isRegistering()) {
-      this.onRegisterSubmit({
-        username,
-        email,
-        password
-      })
+    console.log(this.authForm.invalid,this.authForm.errors, '___ERRORRS!!!!@')
+    if(this.authForm.invalid) {
+      console.log(this.authForm.invalid,this.authForm.errors, '___ERRORRS!!!!@')
     } else {
-      this.onLoginSubmit({
-        username,
-        password
-      })
+      if(this.isRegistering()) {
+        this.onRegisterSubmit({
+          username,
+          email,
+          password
+        })
+      } else {
+        this.onLoginSubmit({
+          username,
+          password
+        })
+      }
     }
   }
 

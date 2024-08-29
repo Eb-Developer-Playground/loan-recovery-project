@@ -47,8 +47,11 @@
           class="form-control"
           [ngClass]="{'is-invalid': false}"
         />
-        <div *ngIf="this.authForm.get('password')?.invalid" class="error-message">
+        <div *ngIf="authForm.get('password')?.dirty && authForm.get('password')?.errors?.hasOwnProperty('required')" class="error-message">
           Password is required.
+        </div>
+        <div *ngIf="authForm.get('password')?.dirty && authForm.get('password')?.errors?.hasOwnProperty('password')" class="error-message">
+          Password is invalid.
         </div>
       </div>
 
