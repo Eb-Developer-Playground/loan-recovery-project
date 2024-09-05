@@ -1,0 +1,95 @@
+<div class="container mx-auto p-8">
+  <h1>Edit Loan</h1>
+  <form class="flex flex-col space-y-4" [formGroup]="loanForm" (ngSubmit)="onSubmit()">
+    <div class="flex space-x-8">
+      <mat-form-field class="flex-1 w-full" appearance="fill">
+        <mat-label>First Name</mat-label>
+        <input matInput formControlName="firstName" placeholder="Enter your first name" />
+        <mat-error *ngIf="loanForm.get('firstName')?.hasError('required')">
+          First Name is required
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field class="flex-1 w-full" appearance="fill">
+        <mat-label>Last Name</mat-label>
+        <input matInput formControlName="lastName" placeholder="Enter your last name" />
+        <mat-error *ngIf="loanForm.get('lastName')?.hasError('required')">
+          Last Name is required
+        </mat-error>
+      </mat-form-field>
+    </div>
+
+    <div class="flex space-x-8">
+      <mat-form-field class="flex-1 w-full" appearance="fill">
+        <mat-label>Amount</mat-label>
+        <input matInput type="number" formControlName="amount" placeholder="Enter your amount" />
+        <mat-error *ngIf="loanForm.get('amount')?.hasError('required')">
+          Amount is required
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field class="flex-1 w-full" appearance="fill">
+        <mat-label>Interest Rate</mat-label>
+        <input matInput type="number" formControlName="interestRate" placeholder="Enter your interest rate" />
+        <mat-error *ngIf="loanForm.get('interestRate')?.hasError('required')">
+          Interest Rate is required
+        </mat-error>
+      </mat-form-field>
+    </div>
+
+    <div class="flex space-x-8">
+      <mat-form-field class="flex-1 w-full" appearance="fill">
+        <mat-label>Start Date</mat-label>
+        <input matInput [matDatepicker]="startDatePicker" formControlName="startDate" placeholder="Select start date" [disabled]="!loanForm.get('maturityDate')?.value" />
+        <mat-datepicker-toggle matSuffix [for]="startDatePicker"></mat-datepicker-toggle>
+        <mat-datepicker #startDatePicker></mat-datepicker>
+        <mat-error *ngIf="loanForm.get('startDate')?.hasError('required')">
+          Start Date is required
+        </mat-error>
+        <mat-error *ngIf="loanForm.get('startDate')?.hasError('startDateAfterMaturityDate')">
+          Start Date must be before Maturity Date
+        </mat-error>
+      </mat-form-field>
+  
+      <mat-form-field class="flex-1 w-full" appearance="fill">
+        <mat-label>Maturity Date</mat-label>
+        <input matInput [matDatepicker]="maturityDatePicker" formControlName="maturityDate" placeholder="Select maturity date" />
+        <mat-datepicker-toggle matSuffix [for]="maturityDatePicker"></mat-datepicker-toggle>
+        <mat-datepicker #maturityDatePicker></mat-datepicker>
+        <mat-error *ngIf="loanForm.get('maturityDate')?.hasError('required')">
+          Maturity Date is required
+        </mat-error>
+      </mat-form-field>
+    </div>
+
+    <div formArrayName="guarantors">
+      <div *ngFor="let guarantor of guarantors.controls; let i = index">
+        <mat-card class="p-4 my-2">
+          <mat-form-field appearance="fill">
+            <mat-label>Guarantor Name</mat-label>
+            <input matInput formControlName="name" placeholder="Enter guarantor's name" />
+            <mat-error *ngIf="guarantor.get('name')?.hasError('required')">
+              Guarantor Name is required
+            </mat-error>
+          </mat-form-field>
+          <mat-form-field appearance="fill">
+            <mat-label>Guarantor ID No</mat-label>
+            <input matInput formControlName="idNo" placeholder="Enter guarantor's ID No" />
+            <mat-error *ngIf="guarantor.get('idNo')?.hasError('required')">
+              Guarantor ID No is required
+            </mat-error>
+          </mat-form-field>
+          <button mat-button (click)="removeGuarantor(i)">Remove</button>
+        </mat-card>
+      </div>
+      <button mat-stroked-button type="button" (click)="addGuarantor()">Add Guarantor</button>
+    </div>
+
+    <mat-checkbox formControlName="consent">Consent</mat-checkbox>
+
+    <div class="flex space-x-4">
+      <button mat-flat-button color="accent" (click)="onNoClick()">Cancel</button>
+      <button mat-flat-button color="primary" (click)="handleUpdateStatus()">Update Status</button>
+    </div>
+  </form>
+</div>

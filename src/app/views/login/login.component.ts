@@ -3,6 +3,8 @@ import { Router } from '@angular/router';
 import { FormControl, FormGroup, FormsModule, ReactiveFormsModule, UntypedFormGroup, Validators } from '@angular/forms'; 
 import { CommonModule } from '@angular/common'; 
 import  passwordValidator from '../../validators/password.validator';
+import { TranslateModule } from '@ngx-translate/core';
+import { TranslationService } from '../../services/translation.service';
 
 type RegisterUserData = {
   email: string;
@@ -17,10 +19,9 @@ type LoginUserData = Omit<RegisterUserData, 'email'>
   standalone: true,
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.sass'],
-  imports: [CommonModule, FormsModule, ReactiveFormsModule] 
+  imports: [CommonModule, FormsModule, ReactiveFormsModule, TranslateModule] 
 })
 export class LoginComponent {
-  // Login form variables
   authForm: UntypedFormGroup = new FormGroup({
     username: new FormControl("", [Validators.required]),
     password: new FormControl("", [Validators.required, passwordValidator]),
@@ -33,9 +34,9 @@ export class LoginComponent {
 
   isRegistering = signal(false);
 
-  private readonly usersKey = 'users'; // Key to store users in local storage
+  private readonly usersKey = 'users'; 
 
-  constructor(private router: Router) {
+  constructor(private router: Router, private translationService: TranslationService) {
     effect(() => {
       if(!this.isRegistering()) {
         this.authForm.removeControl("email")
@@ -51,7 +52,7 @@ export class LoginComponent {
     })
   }
 
-  // Toggle between login and registration forms
+  
   toggleForm() {
     this.isRegistering.set(!this.isRegistering());
     this.loginFailed = false;
@@ -79,7 +80,7 @@ export class LoginComponent {
     }
   }
 
-  // Handle login form submission
+ 
   private onLoginSubmit({ username, password }: LoginUserData) {
     const users = this.getUsers();
     const user = users.find(u => u.username === username && u.password === password);
@@ -96,7 +97,6 @@ export class LoginComponent {
     }
   }
 
-  // Handle registration form submission
   private onRegisterSubmit({username, email, password}: RegisterUserData) {
     const users = this.getUsers();
     const userExists = users.some(u => u.username === username);
@@ -109,7 +109,7 @@ export class LoginComponent {
       this.setUsers(users);
       console.log('Registration successful');
       this.authForm.reset();
-      this.isRegistering.set(false); // Switch back to login view after successful registration
+      this.isRegistering.set(false); 
       this.registrationFailed = false;
     } else {
       console.log('Registration failed');
@@ -117,14 +117,18 @@ export class LoginComponent {
     }
   }
 
-  // Helper function to get users from local storage
+  
   private getUsers(): any[] {
     const users = localStorage.getItem(this.usersKey);
     return users ? JSON.parse(users) : [];
   }
 
-  // Helper function to set users in local storage
+  
   private setUsers(users: any[]): void {
     localStorage.setItem(this.usersKey, JSON.stringify(users));
+  }
+
+  switchLanguage(lang: 'en' | 'sw') {
+    this.translationService.switchTo(lang)
   }
 }

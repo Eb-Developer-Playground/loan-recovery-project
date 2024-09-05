@@ -1,22 +1,24 @@
+// src/app/services/loans.service.ts
+
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
-import loans from '../../app/data/loans.json'
-
 
 @Injectable({
   providedIn: 'root'
 })
 export class LoansService {
-  deleteLoan(id: number) {
-    throw new Error('Method not implemented.');
-  }
-  addLoan(result: any) {
-    throw new Error('Method not implemented.');
-  }
-
   constructor() { }
 
   fetchLoans(): Observable<any[]> {
-    return of(loans)
+    const localLoans = localStorage.getItem('loans');
+    let loans = [];
+    if (localLoans) {
+      loans = JSON.parse(localLoans);
+    }
+    return of(loans);
+  }
+
+  updateLoans(loans: any[]): void {
+    localStorage.setItem('loans', JSON.stringify(loans));
   }
 }

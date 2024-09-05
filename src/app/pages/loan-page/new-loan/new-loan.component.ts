@@ -10,6 +10,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatNativeDateModule } from '@angular/material/core';
+import { differenceInMonths } from 'date-fns';
 
 @Component({
   selector: 'app-new-loan',
@@ -25,8 +26,7 @@ import { MatNativeDateModule } from '@angular/material/core';
     MatIconModule,
     MatFormFieldModule,
     MatCheckboxModule,
-    MatNativeDateModule,
-    MatDatepickerModule,
+    MatNativeDateModule
   ]
 })
 export class NewLoanComponent implements OnInit {
@@ -44,6 +44,9 @@ export class NewLoanComponent implements OnInit {
       income: [null],
       startDate: [null],
       maturityDate: [null],
+      amount: [null, Validators.required],
+      interestRate: [null, Validators.required], 
+      term_months: [{ value: '', disabled: true }],
       guarantors: this.fb.array([]),
       consent: [false, Validators.requiredTrue]
     });
@@ -66,7 +69,24 @@ export class NewLoanComponent implements OnInit {
 
   onSubmit(): void {
     if (this.loanForm.valid) {
-      console.log(this.loanForm.value);
+      const formValues = this.loanForm.value;
+      const localLoans = localStorage.getItem('loans');
+      const oldLoans = localLoans ? JSON.parse(localLoans) : [];
+      const isOverdue = new Date(formValues.maturityDate) < new Date();
+      const newLoan = {
+        id: Math.floor(Math.random() * 100),
+        borrower: `${formValues.firstName} ${formValues.lastName}`,
+        amount: formValues.amount,
+        interest_rate: formValues.interestRate,
+        term_months: formValues.term_months,
+        start_date: formValues.startDate,
+        maturity_date: formValues.maturityDate,
+        status: isOverdue ? 'overdue' : 'current'
+      };
+      const newLoansList = [newLoan, ...oldLoans];
+
+      localStorage.setItem('loans', JSON.stringify(newLoansList));
+
       this.router.navigate(['/loans']);
     }
   }

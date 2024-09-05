@@ -2,8 +2,8 @@
 <div class="container mx-auto">
   <div class="flex justify-between items-center">
     <input
-    matInput
-    class="flex-1 max-w-sm"
+      matInput
+      class="flex-1 max-w-sm"
       [(ngModel)]="searchTerm"
       (ngModelChange)="onSearchChange($event)"
       placeholder="Search by borrower"
@@ -17,7 +17,6 @@
     </div>
   </div>
 
-
   <table>
     <thead>
       <tr>
@@ -27,21 +26,25 @@
         <th>Interest Rate</th>
         <th>Term (months)</th>
         <th>Start Date</th>
+        <th>maturity Date</th>
         <th>Status</th>
-        <th></th>
+        <th>Actions</th>
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let loan of filteredLoans$">
+      <tr *ngFor="let loan of (filteredLoans$ | async)">
         <td>{{ loan.id }}</td>
         <td>{{ loan.borrower }}</td>
-        <td>{{ loan.amount }}</td>
-        <td>{{ loan.interest_rate }}</td>
-        <td>{{ loan.term_months }}</td>
+        <td>{{ loan.amount | currency }}</td>
+        <td>{{ loan.interest_rate }}%</td>
+        <td>{{ loan | loanTerm }}</td>
         <td>{{ loan.start_date | date }}</td>
-        <td [ngClass]="getStatusClass(loan.status)">{{ loan.status }}</td>
+        <td>{{ loan.maturity_date | date }}</td>
+        <td [ngClass]="getStatusClass(loan.status)">{{ loan | status }}</td>
         <td>
-
+          <button mat-icon-button (click)="openDialog(loan)">
+            <mat-icon>edit</mat-icon>
+          </button>
         </td>
       </tr>
     </tbody>

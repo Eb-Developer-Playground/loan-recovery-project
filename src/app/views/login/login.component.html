@@ -3,7 +3,6 @@
   <div class="w-full md:w-6/12 lg:w-4/12">
     <img src="/assets/Loan-Recovery-Platform.png" alt="Loan Recovery Platform" class="w-16 h-16 float-left">
     <h2>{{ isRegistering() ? 'Register' : 'Login' }}</h2>
-
     <form (ngSubmit)="onSubmit()" [formGroup]="authForm" novalidate>
       <div *ngIf="isRegistering()" class="form-group">
         <label for="email">Email</label>
@@ -56,7 +55,7 @@
       </div>
 
       <button type="submit" [disabled]="authForm.invalid" class="submit-button">
-        Login
+        {{ 'LOGIN' | translate }}
       </button>
 
       <div *ngIf="loginFailed" class="error-message">
