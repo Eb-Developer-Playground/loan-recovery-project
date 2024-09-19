@@ -1,8 +1,10 @@
-
-
 .container
   font-family: Arial, sans-serif
   margin: 20px
+  display: flex
+  flex-direction: column
+  height: 100vh
+  box-sizing: border-box
 
 table
   width: 100%
@@ -22,10 +24,33 @@ input
   padding: 5px
   border: 1px solid #ddd
 
-.pagination
+.pagination-controls
   margin-top: 20px
   display: flex
-  justify-content: center
+  justify-content: space-between
+  align-items: center
+
+.pagination
+  display: flex
+  align-items: center
+
+.pagination button
+  margin: 0 5px
+  padding: 5px 10px
+  border: 1px solid #ddd
+  background-color: #f4f4f4
+  cursor: pointer
+
+.pagination button.current
+  background-color: #28a745 /* Green */
+  color: white
+
+.items-per-page
+  display: flex
+  align-items: center
+
+.items-per-page mat-form-field
+  margin-left: 10px
 
 button
   margin: 0 5px
@@ -49,3 +74,9 @@ button:disabled
   
 .overdue
   color: #dc3545 /* Red */
+
+.fixed-button
+  position: fixed
+  bottom: 20px
+  right: 20px
+  z-index: 1000

@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { NgxChartsModule } from '@swimlane/ngx-charts';
-import loans from '../../data/loans.json'
 import { MatIcon } from '@angular/material/icon';
 @Component({
   selector: 'app-dashboard',

@@ -1,6 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { NewLoanComponent } from './new-loan.component';
+import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 
 describe('NewLoanComponent', () => {
   let component: NewLoanComponent;
@@ -8,7 +9,9 @@ describe('NewLoanComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [NewLoanComponent]
+      imports: [NewLoanComponent, 
+        NoopAnimationsModule
+      ]
     })
     .compileComponents();
 

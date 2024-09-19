@@ -1,62 +1,79 @@
-<!-- src/app/pages/loan-page/loan-page.component.html -->
-<div class="container mx-auto">
-  <div class="flex justify-between items-center">
-    <input
-      matInput
-      class="flex-1 max-w-sm"
-      [(ngModel)]="searchTerm"
-      (ngModelChange)="onSearchChange($event)"
-      placeholder="Search by borrower"
-    />
+<div class="container mx-auto flex flex-col">
+  <!-- Main Content -->
+  <div class="flex-grow">
+    <div class="flex justify-between items-center mb-4">
+      <input
+        matInput
+        class="flex-1 max-w-sm"
+        [(ngModel)]="searchTerm"
+        (ngModelChange)="onSearchChange($event)"
+        placeholder="Search by borrower"
+      />
 
-    <div class="flex space-x-2 items-center">
-      <button mat-flat-button (click)="navigateToCreateLoan()">
-        <mat-icon>add</mat-icon> Create New Loan
-      </button>
-      <button mat-button (click)="handleGenerateReport()">Export to CSV</button>
+      <div class="flex space-x-2 items-center">
+        <button mat-flat-button (click)="navigateToCreateLoan()">
+          <mat-icon>add</mat-icon> Create New Loan
+        </button>
+        <button mat-button (click)="handleGenerateReport()">Export to CSV</button>
+      </div>
     </div>
-  </div>
 
-  <table>
-    <thead>
-      <tr>
-        <th>ID</th>
-        <th>Borrower</th>
-        <th>Amount</th>
-        <th>Interest Rate</th>
-        <th>Term (months)</th>
-        <th>Start Date</th>
-        <th>maturity Date</th>
-        <th>Status</th>
-        <th>Actions</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr *ngFor="let loan of (filteredLoans$ | async)">
-        <td>{{ loan.id }}</td>
-        <td>{{ loan.borrower }}</td>
-        <td>{{ loan.amount | currency }}</td>
-        <td>{{ loan.interest_rate }}%</td>
-        <td>{{ loan | loanTerm }}</td>
-        <td>{{ loan.start_date | date }}</td>
-        <td>{{ loan.maturity_date | date }}</td>
-        <td [ngClass]="getStatusClass(loan.status)">{{ loan | status }}</td>
-        <td>
-          <button mat-icon-button (click)="openDialog(loan)">
-            <mat-icon>edit</mat-icon>
-          </button>
-        </td>
-      </tr>
-    </tbody>
-  </table>
+    <table>
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Borrower</th>
+          <th>Amount</th>
+          <th>Interest Rate</th>
+          <th>Term (months)</th>
+          <th>Start Date</th>
+          <th>Maturity Date</th>
+          <th>Status</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let loan of (filteredLoans$ | async)">
+          <td>{{ loan.id }}</td>
+          <td>{{ loan.borrower }}</td>
+          <td>{{ loan.amount | currency }}</td>
+          <td>{{ loan.interest_rate }}%</td>
+          <td>{{ loan | loanTerm }}</td>
+          <td>{{ loan.start_date | date }}</td>
+          <td>{{ loan.maturity_date | date }}</td>
+          <td [ngClass]="getStatusClass(loan.status)">{{ loan | status }}</td>
+          <td>
+            <button mat-icon-button (click)="openDialog(loan)">
+              <mat-icon>edit</mat-icon>
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
 
-  <div>
-    <button
-      (click)="changePage(currentPage - 1)"
-      [disabled]="currentPage === 1"
-    >
-      Previous
-    </button>
-    <button (click)="changePage(currentPage + 1)">Next</button>
+    <!-- Pagination and Items per Page Selector -->
+    <div class="pagination-controls mt-4 flex justify-between items-center">
+      <div class="pagination">
+        <button
+          *ngFor="let page of pageNumbers"
+          (click)="changePage(page)"
+          [class.current]="page === currentPage"
+        >
+          {{ page }}
+        </button>
+      </div>
+
+      <div class="items-per-page">
+        <label for="pageSize">Items per page:</label>
+        <mat-form-field appearance="fill">
+          <mat-label>Items per page</mat-label>
+          <mat-select [(ngModel)]="pageSize" (ngModelChange)="onPageSizeChange($event)">
+            <mat-option *ngFor="let size of pageSizes" [value]="size">
+              {{ size }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+    </div>
   </div>
 </div>
