@@ -6,7 +6,7 @@
     "outDir": "./out-tsc/app",
     "types": [
       "jest",
-      "node"
+    "node"
     ]
   },
   "files": [

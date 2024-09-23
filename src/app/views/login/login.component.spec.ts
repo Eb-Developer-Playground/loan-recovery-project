@@ -10,7 +10,7 @@ describe('LoginComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [LoginComponent, FormsModule],
+      imports: [LoginComponent, FormsModule, TranslateService],
       providers: [
         {
           provide: TranslateService,
